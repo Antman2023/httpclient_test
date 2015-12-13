@@ -31,5 +31,8 @@ func main() {
 		go worker()
 		time.Sleep(time.Second)
 	}
-	select {}
+	http.HandleFunc("/", func(resp http.ResponseWriter, req *http.Request) {
+		resp.Write([]byte("Hello World!"))
+	})
+	http.ListenAndServe(":80", nil)
 }
